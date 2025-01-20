@@ -1,0 +1,25 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+default_language_version:
+    python: python3.13
+files: '^(src|assets|config|tests)/.*'
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+-   repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+    -   id: black
+        name: Black (code formatter)
+
+- repo: https://github.com/pycqa/flake8
+  rev: 7.1.1  # Use the latest stable version of Flake8
+  hooks:
+    - id: flake8
+      name: Flake8 (code linter)
+      additional_dependencies: [Flake8-pyproject]
