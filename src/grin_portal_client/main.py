@@ -12,7 +12,7 @@ def process(transcript, gene, variant_c_dna):
     Du kannst hier die Logik für die Verarbeitung der Zeilen hinzufügen.
     """
     question = Question(transcript, gene, variant_c_dna)
-    print(f"Processed {transcript}, {gene}, {variant_c_dna}")
+    print(f"Processing {transcript}, {gene}, {variant_c_dna}")
     try:
         answer = ShinySolver(question).solve()
         print(f"Answer: {answer}")
@@ -79,14 +79,12 @@ def main():
     args = parser.parse_args()
 
     if all([args.transcript, args.gene, args.variant_c_dna]):
-        # Argumente ausgeben oder weiterverarbeiten
-        print(f"Transkript: {args.transcript}")
-        print(f"Gen: {args.gene}")
-        print(f"cDNA-Variante: {args.variant_c_dna}")
         process(args.transcript, args.gene, args.variant_c_dna)
 
     elif all([args.input, args.output]):
         process_stack(args.input, args.output)
+    else:
+        parser.print_help()
 
 
 if __name__ == "__main__":
