@@ -19,12 +19,12 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 packages = [
-  { include = "grin-portal-client", from = "src" },
+  { include = "grin_portal_client", from = "src" },
 ]
 
 # Define the entry point here
 [tool.poetry.scripts]
-grin-portal-client = "grin-portal-client.main:main"
+grin-portal-client = "grin_portal_client.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.12"
