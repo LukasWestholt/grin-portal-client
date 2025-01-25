@@ -6,13 +6,13 @@ import pandas as pd
 from grin_portal_client.Question import Question
 from grin_portal_client.ShinySolver import ShinySolver, NotSolvable
 
-def process(transcript, gene, variant_c_dna):
+def process(transcript, gene, variant_c_dna) -> tuple[str, str, str]:
     """
     Beispiel-Funktion, die die Daten verarbeitet.
     Du kannst hier die Logik für die Verarbeitung der Zeilen hinzufügen.
     """
     question = Question(transcript, gene, variant_c_dna)
-    print(f"Processing {transcript}, {gene}, {variant_c_dna}")
+    print(f"Processed {transcript}, {gene}, {variant_c_dna}")
     try:
         answer = ShinySolver(question).solve()
         print(f"Answer: {answer}")
@@ -25,6 +25,7 @@ def process(transcript, gene, variant_c_dna):
 def process_stack(input_file, output_file):
     # Excel-Datei einlesen
     df = pd.read_excel(input_file)
+    # df = df.iloc[0:1]
 
     # Sicherstellen, dass die erwarteten Spalten vorhanden sind
     required_columns = ["transcript", "gene", "variant_c_dna"]
@@ -32,8 +33,8 @@ def process_stack(input_file, output_file):
         if col not in df.columns:
             raise ValueError(f"Die Spalte '{col}' fehlt in der Eingabedatei.")
 
-    df.loc[:, ["acmg_classification", "detailed_effect", "protein"]] = df.apply(
-        lambda row: process(row["transcript"], row["gene"], row["variant_c_dna"]),
+    df[["acmg_classification", "detailed_effect", "protein"]] = df.apply(
+        lambda row: pd.Series(process(row["transcript"], row["gene"], row["variant_c_dna"])),
         axis=1
     )
 
