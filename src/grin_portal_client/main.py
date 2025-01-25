@@ -83,11 +83,10 @@ def main():
         print(f"Transkript: {args.transcript}")
         print(f"Gen: {args.gene}")
         print(f"cDNA-Variante: {args.variant_c_dna}")
-
+        process(args.transcript, args.gene, args.variant_c_dna)
 
     elif all([args.input, args.output]):
         process_stack(args.input, args.output)
-
 
 
 if __name__ == "__main__":

@@ -61,7 +61,8 @@ class GrinPortalWebsocket:
 
     @staticmethod
     def is_loading_response(response: list) -> bool:
-        assert len(response) == 1
+        if len(response) != 1:
+            return False
         if ["o"] == response or r"ACK " in response[0]:
             return False
         return True

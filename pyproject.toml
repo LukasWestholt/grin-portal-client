@@ -30,6 +30,7 @@ grin-portal-client = "grin_portal_client.main:main"
 python = "^3.12"
 websockets = "^14.1"
 pandas = "^2.2.3"
+openpyxl = "^3.1.5"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0"
