@@ -33,7 +33,7 @@ class GrinPortalWebsocket:
                         return await self.send_requests(messages_to_send)
                 websocket.transport.close()
                 print("Connection is closed.")
-        except websockets.exceptions.InvalidStatus:
+        except (websockets.exceptions.InvalidStatus, TimeoutError):
             print("Connection could not be established to " + ws_url + ".")
         print("Finished requests.")
 
@@ -53,7 +53,7 @@ class GrinPortalWebsocket:
                 return response
 
     async def _read_response(self, websocket) -> Answer | list:
-        async with asyncio.timeout(5):
+        async with asyncio.timeout(10):
             response = await websocket.recv()
         resp_obj = self.interpret_response(response)
         print(f"Received response: {resp_obj}")
