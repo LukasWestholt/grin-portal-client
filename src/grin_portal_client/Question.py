@@ -8,4 +8,4 @@ class Question:
         self.variant_c_dna = variant_c_dna
 
     def __str__(self):
-        return (self.__class__.__name__, self.transcript, self.gene, self.variant_c_dna)
+        return str((self.__class__.__name__, self.transcript, self.gene, self.variant_c_dna))

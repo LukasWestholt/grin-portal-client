@@ -17,7 +17,7 @@ def process(transcript, gene, variant_c_dna):
         answer = ShinySolver(question).solve()
         print(f"Answer: {answer}")
         answer = (answer.acmg_classification, answer.detailed_effect, answer.protein)
-    except NotSolvable:
+    except (NotSolvable, TypeError):
         print("Question was not solvable")
         answer = ("", "", "")
     return answer
